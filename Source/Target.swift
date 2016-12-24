@@ -14,13 +14,13 @@ public protocol TargetType {
 }
 
 public extension TargetType {
-    var parameterEncoding: ParameterEncoding {
-        return URLEncoding.default
-    }
-
-    var validate: Bool {
-        return false
-    }
+    var path: String { return "" }
+    var method: Moya.Method { return .get }
+    var parameters: [String: Any]? { return nil }
+    var parameterEncoding: ParameterEncoding { return URLEncoding.default }
+    var sampleData: Data { return Data() }
+    var task: Task { return .request }
+    var validate: Bool { return false }
 }
 
 /// Represents an HTTP method.
