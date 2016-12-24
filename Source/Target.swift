@@ -3,14 +3,29 @@ import Alamofire
 
 /// Protocol to define the base URL, path, method, parameters and sample data for a target.
 public protocol TargetType {
+    /// The base URL for the target
     var baseURL: URL { get }
+
+    /// The path to be appended to the baseURL (defaults to none)
     var path: String { get }
+
+    /// The HTTP method to be used (defaults to `get`)
     var method: Moya.Method { get }
+
+    /// The parameters to be sent in the request (defaults to `nil`)
     var parameters: [String: Any]? { get }
-    var parameterEncoding: ParameterEncoding { get } // Defaults to `URLEncoding`
+
+    /// The `ParameterEncoding` to be used in the request (defaults to `URLEncoding`)
+    var parameterEncoding: ParameterEncoding { get }
+
+    /// Sample data to be used in testing (defaults to an empty `Data`)
     var sampleData: Data { get }
+
+    /// The type of task to be used (dafaults to `request`)
     var task: Task { get }
-    var validate: Bool { get } // Alamofire validation (defaults to `false`)
+
+    /// Whether Alamofire validation should be applied (defaults to `false`)
+    var validate: Bool { get }
 }
 
 public extension TargetType {
@@ -23,7 +38,7 @@ public extension TargetType {
     var validate: Bool { return false }
 }
 
-/// A TargetType that represents a GET request to a single URL with no parameters.
+/// A `TargetType` that represents a GET request to a single `URL` with no parameters.
 public struct SingleURLTarget: TargetType {
     public let baseURL: URL
 
