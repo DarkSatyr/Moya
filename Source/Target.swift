@@ -11,6 +11,7 @@ public protocol TargetType {
     var sampleData: Data { get }
     var task: Task { get }
     var validate: Bool { get } // Alamofire validation (defaults to `false`)
+    var headers: [String: String]? { get }
 }
 
 public extension TargetType {
@@ -20,6 +21,10 @@ public extension TargetType {
 
     var validate: Bool {
         return false
+    }
+    
+    var headers: [String: String]? {
+        return nil
     }
 }
 
